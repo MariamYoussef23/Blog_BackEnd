@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 import { Post } from "./post";
 import { Comment } from "./comment";
-import { Vote } from "./vote"
+import { Vote } from "./vote";
 
 @Entity()
 export class User extends BaseEntity {
@@ -24,6 +24,9 @@ export class User extends BaseEntity {
 
   @Column({ nullable: false, unique: true })
   email: string;
+
+  @Column({nullable: true})
+  image: string;
 
   @CreateDateColumn({
     type: "timestamptz",
@@ -46,5 +49,4 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Vote, (vote) => vote.user)
   votes: Vote[];
-
 }
